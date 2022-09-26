@@ -2,6 +2,8 @@ import React from "react";
 import "./modal.css";
 
 export const Modal = ({ showModal, closeModal, modalTitle, modalBody }) => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
   return (
     <div
       className="modalMain"
