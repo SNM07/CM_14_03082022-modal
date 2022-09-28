@@ -1,8 +1,7 @@
 {
     "presets": [
         "@babel/preset-env",
-        "@babel/preset-react",
-        // "@babel/plugin-proposal-function-bind"
+        "@babel/preset-react"
     ],
     "plugins": ["babel-plugin-styled-components"]
 }
