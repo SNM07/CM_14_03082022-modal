@@ -8,7 +8,7 @@ export default {
       file: 'Modal.js',
       format: 'cjs'
     },
-    external: ["react", "styled-components"],
+    external: ["react", "styled-components", "prop-types"],
     plugins: [
       babel({
         exclude: "node_module/**",

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const ModalContainer = styled.div`
   height: 100%;
@@ -71,36 +72,78 @@ const ModalButton = styled.button`
   cursor: pointer;
 `;
 
+/**
+* You must use this modal with this kind of setup:
+*
+* const [showModal, setShowModal] = useState(false);
+*
+* const closeModal = () => setShowModal(!showModal);
+*
+/////////////////////////////////////////////////////////////////////
+*
+* @param {boolean} showModal - Display the modal
+* @param {boolean} closeModal - Close the modal
+* @param {string} modalTitle - Title of the modal
+* @param {string} modalBody - Text of the modal
+*
+/////////////////////////////////////////////////////////////////////
+*
+* To override styles of components use these classNames:
+*
+* @param {object} ModalContainer       | className="modalContainer"
+* @param {object} ModalBackground      | className="modalBackground"
+* @param {object} ModalBody            | className="modalBody"
+* @param {object} ModalTitleContainer  | className="modalTitleContainer"
+* @param {object} ModalTitle           | className="modalTitle"
+* @param {object} ModalCloseX          | className="modalCloseX"
+* @param {object} ModalContent         | className="modalContent"
+* @param {object} ModalTextContainer   | className="modalTextContainer"
+* @param {object} ModalText            | className="modalText"
+* @param {object} ModalButtonContainer | className="modalButtonContainer"
+* @param {object} ModalButton          | className="modalButton"
+*
+/////////////////////////////////////////////////////////////////////
+*
+* @returns {component} - Modal
+*/
+
 export const Modal = ({ showModal, closeModal, modalTitle, modalBody }) => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
     <ModalContainer
-      className="modalMain"
+      className="modalContainer"
       style={{ display: showModal ? "block" : "none" }}
     >
       <ModalBody className="modalBody" style={{}}>
-        <ModalTitleContainer className="modalTitle">
-          <ModalTitle>{modalTitle}</ModalTitle>
-          <ModalCloseX onClick={closeModal} className="closeModalX">
+        <ModalTitleContainer className="modalTitleContainer">
+          <ModalTitle className="modalTitle">{modalTitle}</ModalTitle>
+          <ModalCloseX onClick={closeModal} className="modalCloseX">
             x
           </ModalCloseX>
         </ModalTitleContainer>
         <ModalContent className="modalContent">
-          <ModalTextContainer className="modalText">
-            <ModalText>{modalBody}</ModalText>
+          <ModalTextContainer className="modalTextContainer">
+            <ModalText className="modalText">{modalBody}</ModalText>
           </ModalTextContainer>
-          <ModalButtonContainer className="modalBtn">
-            <ModalButton onClick={closeModal} className="closeBtn">
+          <ModalButtonContainer className="modalButtonContainer">
+            <ModalButton onClick={closeModal} className="modalButton">
               Close
             </ModalButton>
           </ModalButtonContainer>
         </ModalContent>
       </ModalBody>
       <ModalBackground
-        className="modalBg"
+        className="modalBackground"
         onClick={closeModal}
       ></ModalBackground>
     </ModalContainer>
   );
+};
+
+Modal.propTypes = {
+  showModal: PropTypes.bool,
+  closeModal: PropTypes.bool,
+  modalTitle: PropTypes.string,
+  modalBody: PropTypes.string,
 };
